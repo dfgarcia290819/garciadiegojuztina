@@ -31,6 +31,7 @@ RUN apt-get update \
         ros-kinetic-joy \
         ros-kinetic-map-server \
         ros-kinetic-pointcloud-to-laserscan \
+        ros-kinetic-serial \
         ros-kinetic-sound-play \
         ros-kinetic-tf \
         ros-kinetic-tf2-bullet \
