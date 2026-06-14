@@ -31,12 +31,14 @@ RUN apt-get update \
         ros-kinetic-fake-localization \
         ros-kinetic-gmapping \
         ros-kinetic-joy \
+        ros-kinetic-laser-geometry \
         ros-kinetic-map-server \
         ros-kinetic-pointcloud-to-laserscan \
         ros-kinetic-serial \
         ros-kinetic-sound-play \
         ros-kinetic-tf \
         ros-kinetic-tf2-bullet \
+        ros-kinetic-tf-conversions \
         ros-kinetic-urg-node \
         sudo \
         tzdata \
