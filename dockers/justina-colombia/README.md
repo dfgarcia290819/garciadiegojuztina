@@ -44,6 +44,9 @@ usar una copia aprobada en un registro interno.
 
 El comando incluye distribuciones ROS fuera de soporte al actualizar `rosdep`,
 instala las dependencias declaradas, limpia resultados anteriores y compila.
+Omite `libopenni-sensor-primesense-dev` porque ya no está disponible en los
+repositorios de Ubuntu Xenial. Los módulos compilan con `libopenni`, pero usar
+un sensor PrimeSense antiguo requiere instalar su controlador manualmente.
 
 En Windows, después de aplicar la propuesta, valide los archivos con:
 

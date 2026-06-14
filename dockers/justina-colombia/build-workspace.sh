@@ -12,6 +12,7 @@ rosdep install \
     --from-paths "${JUSTINA_WS}/src" \
     --ignore-src \
     --rosdistro "${ROS_DISTRO}" \
+    --skip-keys "libopenni-sensor-primesense-dev" \
     -r \
     -y
 
