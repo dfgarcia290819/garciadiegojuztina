@@ -23,7 +23,9 @@ RUN apt-get update \
         locales \
         python-catkin-tools \
         python-rosdep \
+        qtbase5-dev \
         ros-kinetic-amcl \
+        ros-kinetic-dynamixel-sdk \
         ros-kinetic-fake-localization \
         ros-kinetic-gmapping \
         ros-kinetic-joy \
