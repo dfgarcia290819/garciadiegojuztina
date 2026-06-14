@@ -19,24 +19,6 @@ usar una copia aprobada en un registro interno.
 
 ## Uso
 
-La forma recomendada de instalar la propuesta en un clon limpio es:
-
-```bash
-./apply-to-justina.sh /ruta/a/JUSTINA
-```
-
-Desde PowerShell en Windows:
-
-```powershell
-.\apply-to-justina.ps1 -RepositoryPath 'G:\Mi unidad\juztina\JUSTINA-master'
-```
-
-El instalador se detiene si el destino ya existe o si el parche Indigo/Kinetic
-no aplica limpiamente. No sobrescribe archivos existentes. También instala
-`.github/workflows/justina-colombia.yml` para validar futuros pull requests.
-
-Después:
-
 1. Entre a `dockers/justina-colombia`.
 2. Cree la configuración local:
 
@@ -64,18 +46,14 @@ Después:
 En Windows, después de aplicar la propuesta, valide los archivos con:
 
 ```powershell
-.\dockers\justina-colombia\validate-proposal.ps1 -RepositoryPath 'G:\Mi unidad\juztina\JUSTINA-master'
+.\dockers\justina-colombia\validate-proposal.ps1 -RepositoryPath .
 ```
 
 ## Issue #13
 
 El archivo `catkin_ws/Justina.workspace` declara ROS Indigo, mientras los scripts
-del repositorio instalan ROS Kinetic. Revise y aplique el parche incluido:
-
-```bash
-git apply --check dockers/justina-colombia/Justina.workspace.kinetic.patch
-git apply dockers/justina-colombia/Justina.workspace.kinetic.patch
-```
+del repositorio instalan ROS Kinetic. Esta propuesta actualiza esa metadata a
+Kinetic.
 
 ## Hardware y GPU
 
@@ -91,7 +69,7 @@ separada de Compose. CUDA 8 y las GPU modernas pueden ser incompatibles.
 docker compose config
 docker build --check .
 shellcheck container-entrypoint.sh
-git apply --check Justina.workspace.kinetic.patch
+grep -Fq '<Distribution name="kinetic"/>' ../../catkin_ws/Justina.workspace
 ```
 
 Estas validaciones requieren Docker Compose v2 y un anfitrión Linux. Docker

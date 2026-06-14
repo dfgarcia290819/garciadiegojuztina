@@ -30,9 +30,14 @@ foreach ($pattern in $unsafePatterns) {
 $previousRepoPath = $env:JUSTINA_REPO_PATH
 try {
     $env:JUSTINA_REPO_PATH = $RepositoryPath
-    & docker-compose -f $composeFile config | Out-Null
+    if (Get-Command docker-compose -ErrorAction SilentlyContinue) {
+        & docker-compose -f $composeFile config | Out-Null
+    }
+    else {
+        & docker compose -f $composeFile config | Out-Null
+    }
     if ($LASTEXITCODE -ne 0) {
-        throw 'docker-compose config falló.'
+        throw 'La validación de Docker Compose falló.'
     }
 }
 finally {
