@@ -5,7 +5,8 @@ ejecuta los instaladores heredados ni modifica paquetes del equipo anfitrión.
 
 ## Alcance
 
-- Usa la imagen legada `ros:kinetic-ros-base-xenial`.
+- Usa la imagen legada `ros:kinetic-ros-base-xenial` e instala el entorno
+  completo `ros-kinetic-desktop-full`.
 - Declara explícitamente la plataforma `linux/amd64`.
 - Configura `America/Bogota` y `es_CO.UTF-8`.
 - Monta el clon de JUSTINA en `/workspace/JUSTINA`.
@@ -35,14 +36,14 @@ usar una copia aprobada en un registro interno.
    docker compose run --rm justina
    ```
 
-5. Dentro del contenedor, evalúe dependencias antes de compilar:
+5. Dentro del contenedor, prepare dependencias y compile el workspace:
 
    ```bash
-   cd catkin_ws
-   rosdep check --from-paths src --ignore-src
-   rosdep install --from-paths src --ignore-src -r -y
-   catkin build
+   build-justina-workspace
    ```
+
+El comando incluye distribuciones ROS fuera de soporte al actualizar `rosdep`,
+instala las dependencias declaradas, limpia resultados anteriores y compila.
 
 En Windows, después de aplicar la propuesta, valide los archivos con:
 

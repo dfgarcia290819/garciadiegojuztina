@@ -25,7 +25,12 @@ if ($dockerfileContent -notmatch 'LC_ALL=es_CO\.UTF-8') {
 }
 
 $unsafePatterns = @('--privileged', 'apt-key', 'nvidia-docker', 'chown\s+-R\s+/home', 'rm\s+-rf\s+/opt/ros')
-$implementationFiles = @($composeFile, $dockerfile, (Join-Path $proposalDirectory 'container-entrypoint.sh'))
+$implementationFiles = @(
+    $composeFile,
+    $dockerfile,
+    (Join-Path $proposalDirectory 'container-entrypoint.sh'),
+    (Join-Path $proposalDirectory 'build-workspace.sh')
+)
 foreach ($pattern in $unsafePatterns) {
     if (Select-String -Path $implementationFiles -Pattern $pattern) {
         throw "Se encontró un patrón heredado no permitido: $pattern"

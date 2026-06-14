@@ -28,6 +28,7 @@ RUN apt-get update \
         python-rosdep \
         qtbase5-dev \
         ros-kinetic-amcl \
+        ros-kinetic-desktop-full \
         ros-kinetic-dynamixel-sdk \
         ros-kinetic-fake-localization \
         ros-kinetic-gmapping \
@@ -55,7 +56,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY container-entrypoint.sh /usr/local/bin/container-entrypoint
-RUN chmod 0755 /usr/local/bin/container-entrypoint
+COPY build-workspace.sh /usr/local/bin/build-justina-workspace
+RUN chmod 0755 /usr/local/bin/container-entrypoint /usr/local/bin/build-justina-workspace
 
 USER justina
 WORKDIR /workspace/JUSTINA

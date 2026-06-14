@@ -29,7 +29,9 @@ jobs:
         shell: bash
         run: |
           bash -n dockers/justina-colombia/container-entrypoint.sh
+          bash -n dockers/justina-colombia/build-workspace.sh
           shellcheck dockers/justina-colombia/container-entrypoint.sh
+          shellcheck dockers/justina-colombia/build-workspace.sh
 
       - name: Reject unsafe legacy patterns
         shell: bash
