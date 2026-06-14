@@ -23,6 +23,16 @@ RUN apt-get update \
         locales \
         python-catkin-tools \
         python-rosdep \
+        ros-kinetic-amcl \
+        ros-kinetic-fake-localization \
+        ros-kinetic-gmapping \
+        ros-kinetic-joy \
+        ros-kinetic-map-server \
+        ros-kinetic-pointcloud-to-laserscan \
+        ros-kinetic-sound-play \
+        ros-kinetic-tf \
+        ros-kinetic-tf2-bullet \
+        ros-kinetic-urg-node \
         sudo \
         tzdata \
     && locale-gen es_CO.UTF-8 \

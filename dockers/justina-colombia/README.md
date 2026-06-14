@@ -40,6 +40,7 @@ usar una copia aprobada en un registro interno.
    ```bash
    cd catkin_ws
    rosdep check --from-paths src --ignore-src
+   rosdep install --from-paths src --ignore-src -r -y
    catkin build
    ```
 
