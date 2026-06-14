@@ -21,6 +21,7 @@ RUN apt-get update \
         ca-certificates \
         git \
         libjack-jackd2-dev \
+        libopencv-dev \
         libpcl-dev \
         locales \
         python-catkin-tools \
@@ -33,6 +34,7 @@ RUN apt-get update \
         ros-kinetic-joy \
         ros-kinetic-laser-geometry \
         ros-kinetic-map-server \
+        ros-kinetic-pcl-ros \
         ros-kinetic-pointcloud-to-laserscan \
         ros-kinetic-serial \
         ros-kinetic-sound-play \
