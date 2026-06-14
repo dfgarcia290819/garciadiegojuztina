@@ -20,6 +20,8 @@ RUN apt-get update \
         build-essential \
         ca-certificates \
         git \
+        libjack-jackd2-dev \
+        libpcl-dev \
         locales \
         python-catkin-tools \
         python-rosdep \
