@@ -1,0 +1,44 @@
+ARG ROS_BASE_IMAGE=ros:kinetic-ros-base-xenial
+FROM ${ROS_BASE_IMAGE}
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG USERNAME=justina
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+ENV TZ=America/Bogota \
+    LANG=es_CO.UTF-8 \
+    LANGUAGE=es_CO:es \
+    LC_TIME=es_CO.UTF-8 \
+    ROS_DISTRO=kinetic \
+    JUSTINA_WS=/workspace/JUSTINA/catkin_ws
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        bash-completion \
+        build-essential \
+        ca-certificates \
+        git \
+        locales \
+        python-catkin-tools \
+        python-rosdep \
+        sudo \
+        tzdata \
+    && locale-gen es_CO.UTF-8 \
+    && update-locale LANG=es_CO.UTF-8 LANGUAGE=es_CO:es LC_TIME=es_CO.UTF-8 \
+    && ln -snf /usr/share/zoneinfo/America/Bogota /etc/localtime \
+    && echo America/Bogota > /etc/timezone \
+    && groupadd --gid "${USER_GID}" "${USERNAME}" \
+    && useradd --uid "${USER_UID}" --gid "${USER_GID}" --create-home --shell /bin/bash "${USERNAME}" \
+    && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/${USERNAME}" \
+    && chmod 0440 "/etc/sudoers.d/${USERNAME}" \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY container-entrypoint.sh /usr/local/bin/container-entrypoint
+RUN chmod 0755 /usr/local/bin/container-entrypoint
+
+USER justina
+WORKDIR /workspace/JUSTINA
+
+ENTRYPOINT ["/usr/local/bin/container-entrypoint"]
+CMD ["bash"]
