@@ -9,6 +9,7 @@ ARG USER_GID=1000
 ENV TZ=America/Bogota \
     LANG=es_CO.UTF-8 \
     LANGUAGE=es_CO:es \
+    LC_ALL=es_CO.UTF-8 \
     LC_TIME=es_CO.UTF-8 \
     ROS_DISTRO=kinetic \
     JUSTINA_WS=/workspace/JUSTINA/catkin_ws

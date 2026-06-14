@@ -21,6 +21,10 @@ jobs:
         shell: bash
         run: grep -Fq '<Distribution name="kinetic"/>' catkin_ws/Justina.workspace
 
+      - name: Verify Colombia locale override
+        shell: bash
+        run: grep -Fq 'LC_ALL=es_CO.UTF-8' dockers/justina-colombia/Dockerfile
+
       - name: Check shell scripts
         shell: bash
         run: |

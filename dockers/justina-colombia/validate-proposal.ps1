@@ -19,6 +19,11 @@ if ($distribution -ne 'kinetic') {
     throw "Se esperaba ROS Kinetic en Justina.workspace; se encontró: $distribution"
 }
 
+$dockerfileContent = Get-Content -Raw -LiteralPath $dockerfile
+if ($dockerfileContent -notmatch 'LC_ALL=es_CO\.UTF-8') {
+    throw 'El Dockerfile no configura LC_ALL=es_CO.UTF-8.'
+}
+
 $unsafePatterns = @('--privileged', 'apt-key', 'nvidia-docker', 'chown\s+-R\s+/home', 'rm\s+-rf\s+/opt/ros')
 $implementationFiles = @($composeFile, $dockerfile, (Join-Path $proposalDirectory 'container-entrypoint.sh'))
 foreach ($pattern in $unsafePatterns) {
